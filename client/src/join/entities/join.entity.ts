@@ -5,16 +5,20 @@ export class User {
   @PrimaryGeneratedColumn()
   seq: number;
 
-  @Column()
+  @Column({ nullable: false })
   userName: string;
 
-  @PrimaryColumn()
+  @PrimaryColumn({ nullable: false })
   userId: string;
 
-  @Column()
+  @Column({ nullable: false })
   password: string;
 
-  @Column()
-  role: string;
+  @Column({ nullable: false })
+  email : string;
+
+  @Column({ type: 'int', nullable: false })
+  phone: number;
+
 
 }

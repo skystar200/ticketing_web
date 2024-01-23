@@ -11,8 +11,8 @@ export class JoinService {
         private joinRepository: Repository<User>,
       ) {}
     
-      async create(createUserDto): Promise<any> {
-        const isExist = await this.joinRepository.findOne({ where: { userId: createUserDto.userId } });
+      async create(JoinCreateUserDto): Promise<any> {
+        const isExist = await this.joinRepository.findOne({ where: { userId: JoinCreateUserDto.userId } });
       
         if (isExist) {
           throw new ForbiddenException({
@@ -21,15 +21,15 @@ export class JoinService {
             error: 'Forbidden'
           });
         }
-        createUserDto.password = await bcrypt.hash(createUserDto.password, bcryptConstant.saltOrRounds);
-        const { password, ...result } = await this.joinRepository.save(createUserDto);
+        JoinCreateUserDto.password = await bcrypt.hash(JoinCreateUserDto.password, bcryptConstant.saltOrRounds);
+        const { password, ...result } = await this.joinRepository.save(JoinCreateUserDto);
         return result;
       }
 
     
       async findAll(): Promise<User[]> {
         return this.joinRepository.find({
-          select: ["seq", "userId", "userName", "role"],
+          select: ["seq", "userId", "userName", "email", "phone"],
         });
       }
     
