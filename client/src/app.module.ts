@@ -13,7 +13,7 @@ import { UserModule } from './user/user.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'kyk12050713~',
+      password: ,
       database: 'ticketing_web',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
